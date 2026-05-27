@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///Users/carla/Downloads/everpass-designers_7.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EverPass Product Design Team · AI State of Play 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F2EFE9;
+    --ink: #1C1A1F;
+    --muted: #736D7A;
+    --border: #D9D4CC;
+    --card: #FAFAF8;
+    --green: #1F7A4A;
+    --green-bg: #E8F5EE;
+    --amber: #9A6200;
+    --amber-bg: #FDF3E0;
+    --red: #A82E24;
+    --red-bg: #FAEAE8;
+    --blue: #1A4EA0;
+    --blue-bg: #EAF0FB;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--ink);
+    color: #F2EFE9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 64px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(242,239,233,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242,239,233,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .cover-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(242,239,233,0.35);
+    border: 1px solid rgba(242,239,233,0.12);
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+
+  .cover h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: rgba(242,239,233,0.4);
+  }
+
+  .cover-meta {
+    font-size: 13px;
+    color: rgba(242,239,233,0.4);
+    margin-bottom: 48px;
+  }
+
+  .cover-scroll {
+    font-size: 12px;
+    color: rgba(242,239,233,0.25);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cover-scroll::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: rgba(242,239,233,0.2);
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+
+  .nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 28px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 15px 18px;
+    white-space: nowrap;
+    transition: all 0.18s;
+  }
+
+  .nav-btn:hover { color: var(--ink); }
+  .nav-btn.active { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 56px;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── TYPOGRAPHY ── */
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .section-h {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 52px 0;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 26px 28px;
+  }
+
+  .card-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .card-full { grid-column: 1 / -1; }
+
+  /* ── PILLS ── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .pill-green  { background: var(--green-bg);  color: var(--green); }
+  .pill-amber  { background: var(--amber-bg);  color: var(--amber); }
+  .pill-red    { background: var(--red-bg);    color: var(--red); }
+  .pill-blue   { background: var(--blue-bg);   color: var(--blue); }
+
+  /* ── INSIGHT ROWS ── */
+  .insight-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .insight-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 0 5px 5px 0;
+    padding: 16px 20px;
+    transition: border-left-color 0.2s;
+  }
+
+  .insight-row:hover { border-left-color: var(--ink); }
+
+  .insight-row.good   { border-left-color: var(--green); }
+  .insight-row.gap    { border-left-color: var(--amber); }
+  .insight-row.urgent { border-left-color: var(--red); }
+
+  .ir-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  .ir-body { font-size: 13.5px; line-height: 1.6; }
+  .ir-body strong { font-weight: 600; }
+
+  /* ── STAT BAND ── */
+  .stat-band {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .stat-tile {
+    background: var(--ink);
+    color: #F2EFE9;
+    border-radius: 5px;
+    padding: 20px 18px;
+    text-align: center;
+  }
+
+  .stat-n {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-l {
+    font-size: 11px;
+    color: rgba(242,239,233,0.45);
+    line-height: 1.4;
+  }
+
+  /* ── PERSON CARD ── */
+  .person-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .person-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 22px 24px;
+  }
+
+  .person-name {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+
+  .person-role {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--bg);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  .person-strength {
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .person-next {
+    font-size: 12px;
+    background: var(--amber-bg);
+    color: var(--amber);
+    border-radius: 4px;
+    padding: 8px 10px;
+    line-height: 1.5;
+  }
+
+  /* ── ACTION ITEMS ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 22px 26px;
+    margin-bottom: 12px;
+  }
+
+  .action-num {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--border);
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .action-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .action-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--ink);
+    color: #F2EFE9;
+    border-radius: 6px;
+    padding: 32px 36px;
+    margin: 36px 0;
+  }
+
+  .callout-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(242,239,233,0.3);
+    margin-bottom: 12px;
+  }
+
+  .callout-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.45;
+  }
+
+  /* ── QUIZ ── */
+  .quiz-intro {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    margin-bottom: 28px;
+  }
+
+  .quiz-q {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px 26px;
+    margin-bottom: 14px;
+  }
+
+  .quiz-q-text {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .quiz-q-area {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+
+  .quiz-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    transition: all 0.15s;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .quiz-opt:hover { border-color: var(--ink); background: var(--card); }
+
+  .quiz-opt input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--ink); }
+
+  .quiz-opt.selected { border-color: var(--ink); background: var(--card); }
+
+  .quiz-btn {
+    background: var(--ink);
+    color: #F2EFE9;
+    border: none;
+    border-radius: 4px;
+    padding: 13px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: opacity 0.2s;
+  }
+
+  .quiz-btn:hover { opacity: 0.85; }
+
+  .quiz-result { display: none; }
+
+  .quiz-result-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    margin-top: 28px;
+  }
+
+  .result-area {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .result-area:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .result-area-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .result-score-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 10px;
+  }
+
+  .rsb-track {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .rsb-fill { height: 100%; border-radius: 3px; }
+
+  .rsb-val {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    width: 36px;
+    text-align: right;
+  }
+
+  .result-reco {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 56px;
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .footer a {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+  }
+
+  @media (max-width: 680px) {
+    .cover { padding: 40px 28px; }
+    .main { padding: 40px 24px; }
+    .nav { padding: 0 24px; }
+    .stat-band { grid-template-columns: 1fr 1fr; }
+    .card-grid-2, .person-row { grid-template-columns: 1fr; }
+    .footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-grid"></div>
+  <div class="cover-tag">EverPass Product Design Team · Internal</div>
+  <h1>Where we stand<br><em>on AI in Design</em></h1>
+  <p class="cover-meta">Based on the AI in Design 2026 Report — Designer Fund + Foundation Capital · Q1 2026<br>Read as a team, then take the individual quiz.</p>
+  <div class="cover-scroll">Scroll to begin</div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-label">Sections</span>
+  <button class="nav-btn" onclick="showPage(&#39;overview&#39;)">Overview</button>
+  <button class="nav-btn" onclick="showPage(&#39;team&#39;)">Our team</button>
+  <button class="nav-btn active" onclick="showPage(&#39;gaps&#39;)">Where we're behind</button>
+  <button class="nav-btn" onclick="showPage(&#39;actions&#39;)">What we do next</button>
+  <button class="nav-btn" onclick="showPage(&#39;quiz&#39;)">Individual quiz →</button>
+</nav>
+
+<main class="main">
+
+  <!-- ══════════ OVERVIEW ══════════ -->
+  <section class="page" id="page-overview">
+
+    <p class="eyebrow">The context</p>
+    <h2 class="section-h">What the industry looks like right now</h2>
+    <p class="section-sub">The AI in Design 2026 report surveyed hundreds of designers across company stages. Here's what the benchmark looks like — and where we sit against it.</p>
+
+    <div class="stat-band">
+      <div class="stat-tile">
+        <div class="stat-n">91%</div>
+        <div class="stat-l">use AI weekly<br>↑ from 54% last year</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-n">7</div>
+        <div class="stat-l">tools per designer<br>avg (was 3 in 2025)</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-n">50%</div>
+        <div class="stat-l">shipped AI-generated<br>code to production</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-n">43%</div>
+        <div class="stat-l">expect working<br>prototypes as deliverable</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p class="callout-label">Our overall position</p>
+      <p class="callout-text">As a team, our individual AI capabilities are above average for 2026. The gap isn't what each of us can do — it's that those capabilities haven't become team habits yet.</p>
+    </div>
+
+    <div class="insight-list">
+      <div class="insight-row good">
+        <span class="ir-icon">✓</span>
+        <div class="ir-body"><strong>Adoption is real, not performative.</strong> All team members describe AI as part of our daily workflow — not occasional. The industry says 75% use it daily. We're there.</div>
+      </div>
+      <div class="insight-row good">
+        <span class="ir-icon">✓</span>
+        <div class="ir-body"><strong>We have toolmakers on the team.</strong> The report calls "designers who build their own tools" the clearest signal of advanced practice in 2026. The team is doing exactly that — custom Claude skills, MCP integrations, personalized workflows.</div>
+      </div>
+      <div class="insight-row good">
+        <span class="ir-icon">✓</span>
+        <div class="ir-body"><strong>We're covering the full workflow.</strong> Research synthesis, ideation, copy, design system, documentation — all covered across the team. Most orgs are still concentrated in ideation only.</div>
+      </div>
+      <div class="insight-row gap">
+        <span class="ir-icon">△</span>
+        <div class="ir-body"><strong>Prototyping isn't our default yet.</strong> The industry is moving toward functional prototypes as the standard deliverable. We have the tools (Figma Make, Claude Code) but it's not how we default to working yet.</div>
+      </div>
+      <div class="insight-row urgent">
+        <span class="ir-icon">!</span>
+        <div class="ir-body"><strong>Problem definition is our biggest drag.</strong> We named it ourselves: we take too long to define simple problems. That's not a tools problem — it's the front door to everything else. No amount of AI speed downstream fixes a slow start.</div>
+      </div>
+      <div class="insight-row urgent">
+        <span class="ir-icon">!</span>
+        <div class="ir-body"><strong>What we know isn't shared.</strong> Denise has custom UX critique skills, a senior dev workflow, and a competitor analysis generator. Juan has MCP connections that save real time. Dani has a DS documentation agent, a design decision logger, and a Figma flow analyzer — plus strong research and documentation patterns. None of this is accessible to the rest of the team.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════ TEAM ══════════ -->
+  <section class="page" id="page-team">
+
+    <p class="eyebrow">Per-person read</p>
+    <h2 class="section-h">What each of us is doing well — and where to grow</h2>
+    <p class="section-sub">This is honest. The goal isn't to rank anyone — it's to see the full picture clearly so we can make better decisions as a team.</p>
+
+    <div class="person-row">
+      <div class="person-card">
+        <div class="person-name">Dani</div>
+        <div class="person-role">Product Designer · UX/UI + Research</div>
+        <div class="tag-row">
+          <span class="tag">Documentation</span>
+          <span class="tag">Research</span>
+          <span class="tag">Backlog</span>
+          <span class="tag">DS audit</span>
+          <span class="tag">DS agent</span>
+          <span class="tag">Figma flow analysis</span>
+        </div>
+        <div class="person-strength">Strong at embedding AI into the operational layer — docs, tickets, research synthesis, design system planning. Now pushing further: a DS documentation agent that captures component criteria and design guidelines from the design side, a <code style="font-size:11px; background:var(--ep-green-50); padding:1px 5px; border-radius:3px;">/design.decision</code> skill to log and report design decisions, and a Figma flow analyzer that automatically detects edge cases and error states. This is moving from operational support into quality infrastructure.</div>
+        <div class="person-next">Next unlock: These tools have team-wide potential — especially the flow analyzer. Making them part of how everyone reviews work would be a meaningful quality lift for the whole team.</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Juan</div>
+        <div class="person-role">Product Designer · Multimedia</div>
+        <div class="tag-row">
+          <span class="tag">MCP integrations</span>
+          <span class="tag">Tone &amp; voice</span>
+          <span class="tag">Figma MCP</span>
+          <span class="tag">Prototyping</span>
+        </div>
+        <div class="person-strength">The most connected stack on the team — Notion, Figma, Mobbin via MCP. Tone &amp; voice workflows configured for different user contexts. Already prototyping in Figma Make. This is genuinely advanced practice for 2026.</div>
+        <div class="person-next">Next unlock: You named it yourself — QA consistency checks, handoff annotation automation, and motion/frontend exports. These would close the production loop and reduce eng back-and-forth significantly.</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Denise</div>
+        <div class="person-role">Product Designer · AI + Frontend</div>
+        <div class="tag-row">
+          <span class="tag">React components</span>
+          <span class="tag">DS code</span>
+          <span class="tag">GitHub PRs</span>
+          <span class="tag">Custom skills</span>
+        </div>
+        <div class="person-strength">Already at the frontier the report describes — shipping to production, custom Claude skills (UX critique, senior dev mode, competitor analysis), closing the Figma-to-code loop independently.</div>
+        <div class="person-next">Next unlock: Your skills and workflows are team assets that only you have access to right now. Sharing them multiplies the team's capability. That knowledge transfer is the highest-leverage thing you can do for the team.</div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <p class="eyebrow">What the report says about teams like ours</p>
+    <h2 class="section-h">A 4-person team in 2026 has unusual leverage</h2>
+    <p class="section-sub">Small teams where everyone is technically fluent move faster than large teams with uneven adoption. That's our actual situation — if we act on it.</p>
+
+    <div class="insight-list">
+      <div class="insight-row good">
+        <span class="ir-icon">↑</span>
+        <div class="ir-body">The report shows early-stage and growth teams have <strong>60%+ strong organizational AI support</strong>. We have the tools, the access, and a lead willing to invest in this. That's not a given in the industry.</div>
+      </div>
+      <div class="insight-row good">
+        <span class="ir-icon">↑</span>
+        <div class="ir-body"><strong>Peer learning is the #1 vector of AI advancement in 2026</strong> — 70% of designers learn most from colleagues, not from leadership or training. We already have a structure for this: a weekly AI Lab among designers to learn, level up, and align on how we're using AI. That's exactly the kind of ritual the report identifies in high-performing teams.</div>
+      </div>
+      <div class="insight-row good">
+        <span class="ir-icon">↑</span>
+        <div class="ir-body">The report flags a consistent pattern: <strong>designers at companies with a tinkering culture report higher satisfaction and better output</strong>. We're not starting from scratch — we also have a cross-functional AI committee with Engineering that meets weekly. The structure is there. The opportunity now is making the most of it: using these spaces to share workflows, surface what's working, and turn individual capability into team practice.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════ GAPS ══════════ -->
+  <section class="page active" id="page-gaps">
+
+    <p class="eyebrow">Honest assessment</p>
+    <h2 class="section-h">Where we're behind — and why it matters</h2>
+    <p class="section-sub">Three gaps are worth naming directly. None of them require new tools. All of them require changing how we work together.</p>
+
+    <div class="card card-grid-2" style="padding:0; overflow:hidden; border-radius:6px; margin-bottom:36px;">
+
+      <div style="padding:28px; border-right:1px solid var(--border);">
+        <span class="pill pill-red">Highest drag</span>
+        <h3 style="font-family:&#39;Fraunces&#39;,serif; font-weight:300; font-size:20px; margin-bottom:12px; line-height:1.3;">Problem definition is too slow</h3>
+        <p style="font-size:13.5px; line-height:1.65; color:var(--ink);">
+          We named this ourselves. The irony: we have AI tools that can generate solutions fast — but if we arrive at the wrong problem, that speed works against us. The bottleneck is the <em>start</em> of the process, not the execution.
+          <br><br>
+          The report shows AI accelerates iteration once direction is set. The teams that move fastest have a shared, lightweight alignment ritual before anyone opens Figma or a prompt.
+        </p>
+      </div>
+
+      <div style="padding:28px;">
+        <span class="pill pill-red">Highest drag</span>
+        <h3 style="font-family:&#39;Fraunces&#39;,serif; font-weight:300; font-size:20px; margin-bottom:12px; line-height:1.3;">Prototypes aren't our default</h3>
+        <p style="font-size:13.5px; line-height:1.65; color:var(--ink);">
+          43% of teams in the report expect functional prototypes as standard deliverables. We're still defaulting to mockups for work that would move faster — and get better feedback — as a functional prototype.
+          <br><br>
+          Some has Figma Make. Some can build in code. We have the capability. What's missing is a shared agreement on <em>when</em> to switch modes.
+        </p>
+      </div>
+
+      <div style="padding:28px; border-top:1px solid var(--border); grid-column:1/-1;">
+        <span class="pill pill-amber">Medium drag</span>
+        <h3 style="font-family:&#39;Fraunces&#39;,serif; font-weight:300; font-size:20px; margin-bottom:12px; line-height:1.3;">Individual knowledge isn't team knowledge</h3>
+        <p style="font-size:13.5px; line-height:1.65; color:var(--ink);">
+          Denise built a UX heuristics critique skill, a senior dev workflow, and a competitor analysis generator. Juan has MCP pipelines that auto-synthesize Notion docs. Dani built a DS documentation agent, a design decision logger, and a Figma flow analyzer that detects edge cases automatically — and has deep research and documentation patterns. None of this is accessible to the rest of the team.
+          <br><br>
+          None of this is accessible to the others. The report describes exactly this situation in teams that are technically capable but not yet compounding — the knowledge is there, but it's siloed. On a 4-person team, shared knowledge is one of the highest-leverage investments we can make.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <p class="callout-label">The honest bottom line</p>
+      <p class="callout-text">We're not behind on tools or individual capability. We're behind on turning individual capability into team practice. That's a much more fixable problem.</p>
+    </div>
+
+  </section>
+
+  <!-- ══════════ ACTIONS ══════════ -->
+  <section class="page" id="page-actions">
+
+    <p class="eyebrow">What we do next</p>
+    <h2 class="section-h">Four concrete moves — in order of leverage</h2>
+    <p class="section-sub">None of these require new tools, new headcount, or a long process. All of them require showing up differently.</p>
+
+    <div class="action-item">
+      <div class="action-num">1</div>
+      <div>
+        <div class="action-title">Fix problem definition first</div>
+        <div class="action-body">Introduce a shared 20-minute alignment ritual before any project enters design mode. A short AI-assisted frame: what problem, for whom, what does "done" look like, what's out of scope. The goal isn't documentation — it's shared clarity before anyone opens Figma or writes a prompt. This one change will make everything else faster.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num">2</div>
+      <div>
+        <div class="action-title">Agree on a "prototype by default" trigger</div>
+        <div class="action-body">Decide together: if it involves a user flow with more than two states, we prototype instead of mockup. We already have the tools (Figma Make for interactions, Claude Code for functional prototypes). What's missing is a team agreement. Proposal: try it on one project in the next two weeks and compare the feedback quality.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num">3</div>
+      <div>
+        <div class="action-title">Two "show me your workflow" sessions — Denise and Dani</div>
+        <div class="action-body">30 minutes each. Denise walks through the UX critique skill, senior dev mode, and competitor analysis generator. Dani walks through the DS documentation agent, the design decision logger, and the Figma flow analyzer that catches edge cases and error states automatically. These aren't trainings — they're demos. The goal is making these tools available to everyone, especially the flow analyzer, which is immediately useful across all design work.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num">4</div>
+      <div>
+        <div class="action-title">Create one shared space for prompts and workflows</div>
+        <div class="action-body">A single place — a Notion page, a shared Claude project, a Slack channel — where we drop what's working. Not a formal library. Just a living collection of prompts, shortcuts, and small discoveries. 10 minutes a week of contribution. The report shows peer knowledge-sharing doubled year-over-year as the primary way designers advance. We have four very different skill sets — that's a high-signal collection if it's visible to everyone.</div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <p class="eyebrow">And the quiz →</p>
+    <h2 class="section-h">Now find out where you individually stand</h2>
+    <p class="section-sub">Switch to the quiz tab. It takes about 4 minutes. The results are for you — they show which areas have the most room to grow relative to where the industry is heading.</p>
+
+    <button class="quiz-btn" onclick="showPage(&#39;quiz&#39;)" style="margin-top:0;">Take the quiz →</button>
+
+  </section>
+
+  <!-- ══════════ QUIZ ══════════ -->
+  <section class="page" id="page-quiz">
+
+    <p class="eyebrow">Individual assessment</p>
+    <h2 class="section-h">Where do you stand personally?</h2>
+    <p class="section-sub">10 questions across four areas. Answer honestly — there are no right answers, only useful ones. Results are yours to keep.</p>
+
+    <div id="quiz-form">
+
+      <!-- AREA 1: TOOLS -->
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 1 · Tools &amp; Stack</div>
+        <div class="quiz-q-text">Q1. How many AI tools do you use regularly in your design work?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q1" value="1"> 1–2 tools, mostly for one specific task</label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="2"> 3–4 tools across a few workflow stages</label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="3"> 5–7 tools integrated across most of my process</label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="4"> 7+ tools, including custom ones I built or configured myself</label>
+        </div>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 1 · Tools &amp; Stack</div>
+        <div class="quiz-q-text">Q2. When you discover a workflow that saves you time, what happens next?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q2" value="1"> I use it myself but rarely think about sharing it</label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="2"> I mention it in passing if it comes up in conversation</label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="3"> I try to share it with the team, but there's no real system for it</label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="4"> I document it somewhere the team can find and reuse it</label>
+        </div>
+      </div>
+
+      <!-- AREA 2: CRAFT & OUTPUT -->
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 2 · Craft &amp; Output</div>
+        <div class="quiz-q-text">Q3. When you get a design brief, how quickly can you have something testable in front of a stakeholder?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q3" value="1"> Days — I need to mockup it properly first</label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="2"> Half a day to a day, once the problem is clear</label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="3"> A few hours — I can sketch and prototype quickly</label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="4"> An hour or less — I default to functional prototypes early</label>
+        </div>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 2 · Craft &amp; Output</div>
+        <div class="quiz-q-text">Q4. How do you currently handle QA and design-to-code consistency?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q4" value="1"> I hand off and trust engineering to catch it</label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="2"> I do manual reviews when I have time</label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="3"> I have some AI-assisted spot checks but it's not systematic</label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="4"> I use AI to review copy consistency, specs, and implementation gaps before handoff</label>
+        </div>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 2 · Craft &amp; Output</div>
+        <div class="quiz-q-text">Q5. Have you shipped AI-assisted code (or code you wrote/generated) to production?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q5" value="1"> No, and I don't see it as part of my role</label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="2"> Not yet, but I'd like to explore it</label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="3"> Yes, occasionally — mostly frontend polish or small fixes</label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="4"> Yes, regularly — it's part of how I deliver work</label>
+        </div>
+      </div>
+
+      <!-- AREA 3: PROCESS -->
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 3 · Process &amp; Problem Definition</div>
+        <div class="quiz-q-text">Q6. When you start a new design task, how do you define the problem before jumping in?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q6" value="1"> I mostly go from brief to design mode fairly directly</label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="2"> I clarify via Slack or a quick call, but it's informal</label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="3"> I use AI to help me frame the problem before starting — constraints, user context, success criteria</label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="4"> I have a consistent lightweight ritual (with or without AI) to align with PM/eng before any design work begins</label>
+        </div>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 3 · Process &amp; Problem Definition</div>
+        <div class="quiz-q-text">Q7. How often do you start a project and realize mid-way that the problem was framed wrong?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q7" value="1"> Fairly often — it's one of my main frustrations</label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="2"> Sometimes — usually when the brief was vague</label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="3"> Occasionally — I've gotten better at asking questions upfront</label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="4"> Rarely — I have a reliable way to surface misalignment early</label>
+        </div>
+      </div>
+
+      <!-- AREA 4: COLLABORATION -->
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 4 · Collaboration &amp; Handoff</div>
+        <div class="quiz-q-text">Q8. How does your current design work typically reach engineering?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q8" value="1"> I share a Figma link and answer questions as they come</label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="2"> I do a handoff meeting to walk through the design</label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="3"> I include some auto-generated specs or annotations</label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="4"> I share a functional prototype or code, plus AI-generated specs — minimal back-and-forth needed</label>
+        </div>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 4 · Collaboration &amp; Handoff</div>
+        <div class="quiz-q-text">Q9. How aligned do you feel with engineering on what "good implementation" looks like?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q9" value="1"> Not very — I often find out about deviations after the fact</label>
+          <label class="quiz-opt"><input type="radio" name="q9" value="2"> Somewhat — we talk but not always before implementation starts</label>
+          <label class="quiz-opt"><input type="radio" name="q9" value="3"> Usually aligned — we have a shared review step</label>
+          <label class="quiz-opt"><input type="radio" name="q9" value="4"> Well aligned — I'm close to the codebase and can catch issues early or directly</label>
+        </div>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-area">Area 4 · Collaboration &amp; Handoff</div>
+        <div class="quiz-q-text">Q10. How would you describe your relationship with your own growth on AI tools right now?</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q10" value="1"> I feel behind and a bit overwhelmed by how fast things are moving</label>
+          <label class="quiz-opt"><input type="radio" name="q10" value="2"> I'm keeping up, but mostly through self-directed experimentation</label>
+          <label class="quiz-opt"><input type="radio" name="q10" value="3"> I have a clear sense of where I am and what I want to learn next</label>
+          <label class="quiz-opt"><input type="radio" name="q10" value="4"> I'm actively shaping how the team works with AI — sharing, building, teaching</label>
+        </div>
+      </div>
+
+      <button class="quiz-btn" onclick="submitQuiz()">See my results →</button>
+
+    </div>
+
+    <!-- RESULTS -->
+    <div class="quiz-result" id="quiz-result">
+      <div class="callout" id="result-summary">
+        <p class="callout-label">Your profile</p>
+        <p class="callout-text" id="result-headline"></p>
+      </div>
+
+      <div class="quiz-result-card" id="result-detail">
+        <div class="result-area" id="res-tools">
+          <div class="result-area-title">Tools &amp; Stack</div>
+          <div class="result-score-bar">
+            <div class="rsb-track"><div class="rsb-fill" id="fill-tools" style="background:var(--green);"></div></div>
+            <span class="rsb-val" id="val-tools"></span>
+          </div>
+          <div class="result-reco" id="reco-tools"></div>
+        </div>
+        <div class="result-area" id="res-craft">
+          <div class="result-area-title">Craft &amp; Output</div>
+          <div class="result-score-bar">
+            <div class="rsb-track"><div class="rsb-fill" id="fill-craft" style="background:var(--green);"></div></div>
+            <span class="rsb-val" id="val-craft"></span>
+          </div>
+          <div class="result-reco" id="reco-craft"></div>
+        </div>
+        <div class="result-area" id="res-process">
+          <div class="result-area-title">Process &amp; Problem Definition</div>
+          <div class="result-score-bar">
+            <div class="rsb-track"><div class="rsb-fill" id="fill-process" style="background:var(--green);"></div></div>
+            <span class="rsb-val" id="val-process"></span>
+          </div>
+          <div class="result-reco" id="reco-process"></div>
+        </div>
+        <div class="result-area" id="res-collab">
+          <div class="result-area-title">Collaboration &amp; Handoff</div>
+          <div class="result-score-bar">
+            <div class="rsb-track"><div class="rsb-fill" id="fill-collab" style="background:var(--green);"></div></div>
+            <span class="rsb-val" id="val-collab"></span>
+          </div>
+          <div class="result-reco" id="reco-collab"></div>
+        </div>
+      </div>
+
+      <button class="quiz-btn" onclick="resetQuiz()" style="margin-top:20px; background:transparent; color:var(--ink); border:1px solid var(--border);">Retake quiz</button>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>EverPass Product Design Team · AI in Design 2026 · Internal document</span>
+  <a href="https://stateofaidesign.com/" target="_blank">Full report →</a>
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: document.querySelector('.nav').offsetTop, behavior: 'smooth' });
+  }
+
+  const recos = {
+    tools: [
+      { max: 1, text: "You're at the early adopter stage — using AI for specific tasks but not yet woven into your full workflow. The 2026 benchmark is 7 tools across the process. A good next step: pick one more stage of your workflow (e.g. research synthesis or QA) and try integrating AI there for two weeks." },
+      { max: 2, text: "Solid foundation. You're using AI across a few stages, which puts you close to the industry average. The next level is integration depth — not more tools, but more connected ones. Look at Juan's MCP setup or Denise's custom skills as models." },
+      { max: 3, text: "Well above average. You're using AI across most of your workflow, which puts you in the top tier of the 2026 report. The growth edge is knowledge sharing — are the workflows you've built accessible to the rest of the team?" },
+      { max: 4, text: "You're at the frontier the report describes. Building your own tools and workflows is the clearest signal of advanced practice in 2026. The question now is leverage: how does what you've built multiply the team's capability, not just yours?" }
+    ],
+    craft: [
+      { max: 1, text: "Your output process has room to accelerate significantly. The 2026 benchmark shows 43% of teams expect functional prototypes as a standard deliverable. Experimenting with Figma Make for quick flows — even rough ones — can dramatically change the quality of feedback you get." },
+      { max: 2, text: "You're moving faster than a traditional design process, but there's still meaningful friction between idea and something testable. Try using Figma Make or a simple Claude-generated prototype as the default for anything with more than one state or interaction." },
+      { max: 3, text: "You're close to best practice. Most of your work probably moves fast — the gap is likely in QA and handoff, where the report shows the biggest growth opportunity in 2026 (+16pts YoY). Juan has a plan for this worth looking at." },
+      { max: 4, text: "You're operating at the level the report describes as frontier practice for 2026. Your craft process is fast, functional, and close to the metal. The main question is: are your habits replicable by the rest of the team?" }
+    ],
+    process: [
+      { max: 1, text: "Problem definition is your biggest lever right now. The report confirms this is where the most time is lost — across all teams, not just ours. A simple shared frame before any project starts (20 minutes, AI-assisted) can cut wasted design cycles in half." },
+      { max: 2, text: "You have informal ways of clarifying, but they're not reliable enough to prevent mid-project pivots. Worth trying a lightweight structured approach — even a quick AI-assisted problem frame — before your next project starts. One practice session will show you how much clarity it creates." },
+      { max: 3, text: "You're ahead of most on this. You have ways of surfacing misalignment early, which saves real time downstream. The growth edge is making your approach visible and replicable for the team so it becomes a shared ritual, not just your personal practice." },
+      { max: 4, text: "This is one of the hardest skills in design — knowing what problem you're actually solving before starting. You're doing it consistently. Share how you do it. The team needs this as a shared habit more than it needs any new tool." }
+    ],
+    collab: [
+      { max: 1, text: "Your handoff process is creating friction with engineering that's probably invisible to you. The good news: this is where the 2026 report shows the biggest gains from AI — auto-generated specs, annotated Figma, functional prototypes. Even one change here would be noticeable within weeks." },
+      { max: 2, text: "You're relying on meetings and conversations to fill the gaps in your handoff. That works, but it's costly in time for both you and engineering. Juan's plan for AI-assisted QA and annotation generation is worth looking at as a next step." },
+      { max: 3, text: "You're ahead of where most teams were in 2025. A shared review step is genuinely valuable. The next level is moving from 'review' to 'pre-aligned' — where engineering rarely needs to ask you follow-up questions because the prototype or spec answers them." },
+      { max: 4, text: "This is where design influence is growing fastest in 2026 — designers who are close to the codebase and can catch implementation gaps early. You're already there. Help the team understand how you got here and what it's made possible." }
+    ]
+  };
+
+  const headlines = [
+    "You're getting started — a lot of room to grow, and clear paths to do it quickly.",
+    "You're building solid habits. A few focused moves would make a real difference.",
+    "You're above average for 2026. The growth edge is sharing what you know.",
+    "You're at the frontier. Your main job now is making the team as capable as you are."
+  ];
+
+  function getScore(vals) {
+    return vals.reduce((a, b) => a + b, 0);
+  }
+
+  function scoreToLevel(score, max) {
+    const pct = score / max;
+    if (pct <= 0.4) return 0;
+    if (pct <= 0.6) return 1;
+    if (pct <= 0.8) return 2;
+    return 3;
+  }
+
+  function fillColor(level) {
+    return ['var(--red)', 'var(--amber)', 'var(--green)', 'var(--blue)'][level];
+  }
+
+  function fillWidth(score, max) {
+    return Math.round((score / max) * 100) + '%';
+  }
+
+  function submitQuiz() {
+    const areas = {
+      tools:   ['q1','q2'],
+      craft:   ['q3','q4','q5'],
+      process: ['q6','q7'],
+      collab:  ['q8','q9','q10']
+    };
+
+    const scores = {};
+    const maxes  = { tools: 8, craft: 12, process: 8, collab: 12 };
+    let allAnswered = true;
+
+    for (const [area, qs] of Object.entries(areas)) {
+      let total = 0;
+      for (const q of qs) {
+        const sel = document.querySelector(`input[name="${q}"]:checked`);
+        if (!sel) { allAnswered = false; break; }
+        total += parseInt(sel.value);
+      }
+      scores[area] = total;
+    }
+
+    if (!allAnswered) {
+      alert('Please answer all questions before seeing your results.');
+      return;
+    }
+
+    let totalScore = Object.values(scores).reduce((a,b)=>a+b,0);
+    let totalMax = Object.values(maxes).reduce((a,b)=>a+b,0);
+    let overallLevel = scoreToLevel(totalScore, totalMax);
+
+    document.getElementById('result-headline').textContent = headlines[overallLevel];
+
+    for (const area of Object.keys(areas)) {
+      const level = scoreToLevel(scores[area], maxes[area]);
+      const pct = fillWidth(scores[area], maxes[area]);
+      document.getElementById('fill-' + area).style.width = pct;
+      document.getElementById('fill-' + area).style.background = fillColor(level);
+      document.getElementById('val-' + area).textContent = Math.round((scores[area]/maxes[area])*100) + '%';
+      document.getElementById('reco-' + area).textContent = recos[area][level].text;
+    }
+
+    document.getElementById('quiz-form').style.display = 'none';
+    document.getElementById('quiz-result').style.display = 'block';
+    window.scrollTo({ top: document.querySelector('.nav').offsetTop, behavior: 'smooth' });
+  }
+
+  function resetQuiz() {
+    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+    document.getElementById('quiz-form').style.display = 'block';
+    document.getElementById('quiz-result').style.display = 'none';
+  }
+</script>
+
+
+
+</body></html>
